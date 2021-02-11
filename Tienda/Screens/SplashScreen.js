@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {View,Text,ImageBackground,TouchableOpacity,StyleSheet, Image} from 'react-native';
 
@@ -6,24 +5,26 @@ const SplashScreen = ({navigation})=>
 {
   return(
     <View style={styles.mainContainer}>
-       <View style={styles.ContainerImage}>        
-            <ImageBackground style = {styles.Fondo} source={require('../Images/splash.jpg')}>
+      
+        <View>   
+                <ImageBackground style = {styles.Fondo} source={require('../Images/splashh.jpeg')}/>       
+        </View>
 
-                <Text style={styles.Tipografia}>VEGEZONE</Text>
-             
+        <View>
+        <Text style={styles.Tipografia}>VEGEZONE</Text>
+                
                 <View style = {styles.imagee}>
                     <Image style = {styles.image} source={require('../Images/tienda.png')}/>
                 </View>
-               
+                
 
                 <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('LogIn')}} >
                     <Text style={styles.buttonText}>
                         Let's Shop
                     </Text>
-                </TouchableOpacity>
-
-            </ImageBackground>
+                </TouchableOpacity>        
         </View>
+
     </View>
   );
 }
@@ -31,7 +32,7 @@ const SplashScreen = ({navigation})=>
 const styles = StyleSheet.create({
     mainContainer:
     {                
-        flex:1,    
+        flex:1, 
     },
     imagee:
     {
@@ -39,18 +40,21 @@ const styles = StyleSheet.create({
         backgroundColor:'#55B6B1',
         width: 140,
         borderRadius: 100,
-        marginLeft: 115
+        marginLeft: 115,
     },
     image:
     {
         width:80,
-        height: 80,
-
+        height: 80,        
     },
     Fondo:
     {
-        width:370,
+        width: 379,
         height:630,
+        resizeMode: 'cover',     
+        backgroundColor: 'green', 
+        opacity: 0.5,  
+        position: 'absolute'
     },
     button:
     {
@@ -74,6 +78,7 @@ const styles = StyleSheet.create({
         marginTop: 80,
         textAlign: 'center',
         fontWeight: 'bold',
+        color: 'white'
     }
 });
 
