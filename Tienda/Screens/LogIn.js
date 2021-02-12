@@ -1,44 +1,41 @@
-
 import React from 'react';
-import {View,Text,TextInput,TouchableOpacity,StyleSheet, ImageBackground, Image} from 'react-native';
-import { ceil } from 'react-native-reanimated';
+import {View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, Image} from 'react-native';
+
+
 
 
 const LogIn = ({navigation})=>
 {
   return(
     <View style={styles.mainContainer}>
-        <View style={styles.imageConatiner}>
-            <ImageBackground style = {styles.Fondo} source={require('../Images/splash.jpg')}>
-                <View style={styles.loginContainer}>
-                   
-                    <Text style={styles.labelText}>Sign In</Text>
+      
+        <View>
+            <ImageBackground style = {styles.Fondo} source={require('../Images/splashh.jpeg')}/>
+        </View>
 
-                   
+            <View style={styles.loginContainer}>
+                    
+                <Text style={styles.labelText}>Sign In</Text>
+                    
                     <TextInput placeholder="domain@example.com" style={styles.input}></TextInput>
-                   
-                    <TextInput secureTextEntry={true} style={styles.input}></TextInput>                 
-                   
+                    
+                    <TextInput placeholder="Password" secureTextEntry={true} style={styles.input}></TextInput>                 
+                    
                     <TouchableOpacity >
-                        <Text style={styles.labelSignUp}>Forgot Password</Text>
+                        <Text style={styles.labelSignUp}>Forgot Password?</Text>
                     </TouchableOpacity>
-                </View>
 
-
-                <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('HomeScreen')}} >
                         <Image style = {styles.flecha} source={require('../Images/flecha.png')}/>
                         <Text style={styles.buttonText}>Sign In</Text>
                     </TouchableOpacity>
+            </View>
 
-                    <TouchableOpacity style={styles.Acount} onPress={()=>{navigation.navigate('SignUp')}} >
+                <View style={styles.buttonContainer}>                
+                    <TouchableOpacity onPress={()=>{navigation.navigate('SignUp')}} >
                         <Text style={styles.lebel}>CREATE ACOUNT</Text>
-                    </TouchableOpacity>
-                  
+                    </TouchableOpacity>                    
                 </View>
-            </ImageBackground>
-        </View>
-
        
     </View>
   );
@@ -49,12 +46,6 @@ const styles = StyleSheet.create({
     {                
         flex:1,    
     },
-    imageConatiner:
-    {        
-        flex:1,
-        flexDirection:'row',
-        justifyContent:'center', 
-    },
     image:
     {
         width:100,
@@ -62,13 +53,13 @@ const styles = StyleSheet.create({
     },
     loginContainer:
     { 
-        flex:2,
+        height: 520,
         padding:30,         
         backgroundColor: 'white',
         justifyContent: 'center',
         borderBottomEndRadius: 70,
-        borderBottomLeftRadius: 70
-        
+        borderBottomLeftRadius: 70,
+        position: 'absolute'    
     },
     input:
     {         
@@ -89,52 +80,52 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     buttonContainer:
-    {        
-        flex:1,
-        flexDirection:'column',
-        justifyContent:'center',        
-
+    {          
+        marginTop: 550,
+        marginLeft: 90
+        
     },
     button:
-    {
-        backgroundColor:'#55B6B1',
-        width:220,
-        height:50,
-        flexDirection:'row',
-        justifyContent:'center',
-        borderRadius:20,     
-        marginLeft: 80
-    },
-    buttonText:
-    {
-        marginTop:11,
-        fontSize:20,
-        color:'white'
-    },
+  {
+    padding: 10,
+    backgroundColor:'#55B6B1',
+    width:290,
+    height:50,
+    flexDirection:'row',
+    justifyContent:'center',
+    borderRadius:20,     
+    marginLeft: 10,
+    marginTop: 120
+  },
+  buttonText:
+  {
+    marginTop: 2,
+    fontSize:15,
+    color:'white'
+  },
+  flecha:
+  {
+    width: 15,
+    height: 15,
+    marginTop: 8,
+    marginRight: 5
+  },
     Fondo:
     {
-        width:370,
+        width: 370,
         height:630,
-    },
-    flecha:
-    {
-        width: 15,
-        height: 15,
-        marginTop: 21,
-        marginRight: 5
+        position: 'absolute',
+        resizeMode: 'cover',     
+        backgroundColor: 'green', 
+        opacity: 0.5,  
     },
     lebel:
     {
-        color: 'black',
-        fontWeight: 'bold'
-
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 20
     },
-    Acount:
-    {
-        marginTop: 20,
-        marginLeft: 125,
-        
-    }
+    
 });
 
 export default LogIn;
