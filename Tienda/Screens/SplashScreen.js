@@ -3,86 +3,73 @@ import {View,Text,ImageBackground,TouchableOpacity,StyleSheet, Image} from 'reac
 
 const SplashScreen = ({navigation})=>
 {
-  return(
-    <View style={styles.mainContainer}>
-      
-        <View>   
-                <ImageBackground style = {styles.Fondo} source={require('../Images/splashh.jpeg')}/>       
-        </View>
-
-        <View>
-        <Text style={styles.Tipografia}>VEGEZONE</Text>
-                
+    return(
+        <View style={styles.mainContainer}>     
+            <ImageBackground style = {styles.Fondo} source={require('../Images/splashh.jpeg')}/>       
+            <View>
+                <Text style={styles.Tipografia}>Vegezone</Text>                
                 <View style = {styles.imagee}>
-                    <Image style = {styles.image} source={require('../Images/tienda.png')}/>
-                </View>
-                
-
+                    <Image style = {styles.image} source={require('../Images/tienda3.png')}/>
+                </View>                
                 <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('LogIn')}} >
-                    <Text style={styles.buttonText}>
-                        Let's Shop
-                    </Text>
+                    <Text style={styles.buttonText}>Let's Shop</Text>
                 </TouchableOpacity>        
+            </View>
         </View>
-
-    </View>
-  );
+    );
 }
-
 const styles = StyleSheet.create({
     mainContainer:
     {                
         flex:1, 
+        backgroundColor: '#3cb3ab',
+    },
+    Fondo:
+    {
+        width: '100%',
+        height:'100%',
+        resizeMode: 'cover',      
+        opacity: 0.3,  
+        position: 'absolute'
+    },
+    button:
+    {
+        backgroundColor:'#55B6B1',
+        width: '100%',
+        height:60,
+        flexDirection:'row',
+        justifyContent:'center',
+        marginTop: 170,
+        
+    },
+    buttonText:
+    {
+        marginTop:11,
+        fontSize:22,
+        color:'white',
+        fontWeight: 'bold',
     },
     imagee:
     {
         padding: 30,
-        backgroundColor:'#55B6B1',
+        backgroundColor:'white',
         width: 140,
         borderRadius: 100,
         marginLeft: 115,
+        marginTop: 50,
     },
     image:
     {
         width:80,
         height: 80,        
     },
-    Fondo:
-    {
-        width: 379,
-        height:630,
-        resizeMode: 'cover',     
-        backgroundColor: 'green', 
-        opacity: 0.5,  
-        position: 'absolute'
-    },
-    button:
-    {
-        backgroundColor:'#55B6B1',
-        width: 360,
-        height:60,
-        flexDirection:'row',
-        justifyContent:'center',
-        marginTop: 250,
-        
-    },
-    buttonText:
-    {
-        marginTop:11,
-        fontSize:20,
-        color:'white'
-    },
     Tipografia:
     {
-        fontSize: 20,
-        marginTop: 80,
+        fontFamily: 'Courgette',
+        fontSize: 45,
+        marginTop: 120,
         textAlign: 'center',
-        fontWeight: 'bold',
         color: 'white'
     }
 });
-
 export default SplashScreen;
-
-
-/* */
