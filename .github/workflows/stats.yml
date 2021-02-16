@@ -9,7 +9,7 @@ jobs:
       - name: Run pull request stats
         uses: flowwer-dev/pull-request-stats@v1
         with:
-          token: ${{ secrets.27907ab750c8feddf74cafd65266da7976926f9f }}
+          token: ${{ secrets.PR_STATS_TOKEN}}
           repositories: 'Brightcoders-Bootcamps/kata-05-rn-tienda-team-02-kata-05-rn-tienda,Brightcoders-Bootcamps/kata-05-rn-tienda-team-03-kata-05-rn-tienda,Brightcoders-Bootcamps/kata-05-rn-tienda-team-rn-01-kata-05-tienda,Brightcoders-Bootcamps/kata-05-rn-tienda-team-rn-04'
           period: 30
           charts: true
