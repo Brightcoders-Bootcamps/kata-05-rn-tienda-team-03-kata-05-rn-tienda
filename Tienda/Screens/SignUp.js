@@ -26,7 +26,7 @@ const SignUp = ({navigation})=>
                         <TouchableOpacity >
                             <Text style={styles.labelSignUp}>Forgot Password?</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('HomeScreen')}} >
+                        <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('home')}} >
                             <Image style = {styles.flecha} source={require('../Images/flecha.png')}/>
                             <Text style={styles.buttonText}>CREATE ACOUNT</Text>
                         </TouchableOpacity>               
