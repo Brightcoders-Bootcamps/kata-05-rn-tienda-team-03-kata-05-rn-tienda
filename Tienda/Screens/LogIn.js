@@ -1,7 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, Image, Dimensions} from 'react-native';
+import auth from '@react-native-firebase/auth';
+
 const LogIn = ({navigation})=>
 {
+
+    const [emailUser, setEmail] = useState('');
+    const [passwordUser, setPassword] = useState('');
+
+    function Sesion(){    
+        auth().signInWithEmailAndPassword(emailUser,passwordUser)
+        .then(() => {
+            console.log("usuario logueado");
+            navigation.navigate('home')
+          })
+          .catch(error => {
+            if (error.code === 'auth/email-already-in-use') {
+              console.log('That email address is already in use!');
+            }
+          });
+    }
+
   return(
     <>
         <View style={styles.mainContainer}>  
@@ -10,16 +29,24 @@ const LogIn = ({navigation})=>
                     <Text style={styles.labelText}>Sign In</Text>
                     <View style={[styles.input, styles.shadow]}>
                         <Image style = {styles.icoMail} source={require('../Images/icoMail.png')}/>
-                        <TextInput placeholder="Email" placeholderTextColor={'#b3c6d7'} />
+                       
+                        <TextInput onChangeText={(text)=>{
+                            setEmail(text);
+                        }} placeholder="Email" placeholderTextColor={'#b3c6d7'} />
+
                     </View> 
                     <View style={[styles.input, styles.shadow]}>
                         <Image style = {styles.icoPass} source={require('../Images/icoPass.png')}/>
-                        <TextInput placeholder="Password"  secureTextEntry={true} placeholderTextColor={'#b3c6d7'} />
+
+                        <TextInput onChangeText={(text)=>{
+                            setPassword(text);
+                        }} placeholder="Password"  secureTextEntry={true} placeholderTextColor={'#b3c6d7'}/>
+
                     </View>                
-                    <TouchableOpacity >
+                    <TouchableOpacity>
                         <Text style={styles.labelSignUp}>Forgot Password?</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('home')}} >
+                    <TouchableOpacity style={styles.button} onPress={()=>{Sesion()}}>
                         <Image style = {styles.flecha} source={require('../Images/flecha.png')}/>
                         <Text style={styles.buttonText}>SIGN IN</Text>
                     </TouchableOpacity>               
