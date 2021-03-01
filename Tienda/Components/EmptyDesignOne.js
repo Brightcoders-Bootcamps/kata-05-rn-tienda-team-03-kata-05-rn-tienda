@@ -1,12 +1,14 @@
 import React from 'react';
 import {View,ImageBackground,TouchableOpacity,StyleSheet, Image} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
-export default function EmptyDesignOne({navigation}) {
+export default function EmptyDesignOne(props) {
+  const navigation = useNavigation();
   return (
     <View style={styles.maincontainer}>
       <ImageBackground style = {styles.fondo} source={require('../Images/splashh.jpeg')}/>
       <View style={styles.Header}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('tabcarshop')}>
           <Image style={styles.image} source={require('../Images/carrito2.png')}/>
         </TouchableOpacity>    
       </View>

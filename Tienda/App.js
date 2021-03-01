@@ -1,13 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {
   View,
-  StyleSheet,
   TouchableOpacity,
   Image,
   Text,
   useWindowDimensions,
   LogBox,
-  ScrollView,
 } from 'react-native';
 import {
   createDrawerNavigator,
@@ -23,9 +21,11 @@ import 'firebase/firestore';
 import SplashScreen from './Screens/SplashScreen';
 import LogIn from './Screens/LogIn';
 import SignUp from './Screens/SignUp';
+import HomeScr from './Screens/HomeScr';
+import CarShop from './Screens/CarShop';
+import Empty from './Screens/Empty';
+import styles from "./Components/Styling";
 import EmptyDesignOne from './Components/EmptyDesignOne';
-import DATA from './Components/DATA';
-
 const Tab = createBottomTabNavigator();
 
 function HomeTab({navigation}) {
@@ -39,7 +39,7 @@ function HomeTab({navigation}) {
       }}>
       <Tab.Screen
         name="tabhome"
-        component={HomeScreen}
+        component={HomeScr}
         options={{
           tabBarIcon: ({color}) => (
             <Icon
@@ -116,74 +116,7 @@ function HomeTab({navigation}) {
     </Tab.Navigator>
   );
 }
-function HomeScreen({navigation}) {
-  let i =0;
-  const group = (items, n) =>
-    items.reduce((acc, x, i) => {
-      const idx = Math.floor(i / n);
-      acc[idx] = [...(acc[idx] || []), x];
-      return acc;
-    }, []);
-  return (
-    <>
-      <EmptyDesignOne />
-      <View style={styles.title}>
-        <Text style={styles.labelTitle}>Home</Text>
-      </View>
-      <View style={styles.menu}>
-        <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-          <Image style={styles.imgMenu} source={require('./Images/menu.png')} />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.content}>
-        <ScrollView>
-          {group(DATA, 3).map((children) => (
-            <View key={children[1].id+10} style={styles.group3}>
-              {
-              children.map((x, i) => (
-                  <View key={x.id} style={styles.card}>
-                  <Image style={styles.imgCard} source={{uri: x.image}} />
-                  <Text style={styles.lblProduct}>{x.nameProduct}</Text>
-                  <Text style={styles.lblProduct}>${x.price}</Text>
-                  <TouchableOpacity style={styles.btnAdd}>
-                    <Text style={styles.lblProductButton}>Add to cart</Text>
-                  </TouchableOpacity>
-                </View>
-              ))}
-            </View>
-          ))}
-        </ScrollView>
-      </View>
-    </>
-  );
-}
-function CarShop({navigation}) {
-  return (
-    <>
-      <EmptyDesignOne />
-      <View style={styles.title}>
-        <Text style={styles.labelTitle}>CarShop</Text>
-      </View>
-      <View style={styles.menu}>
-        <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-          <Image style={styles.imgMenu} source={require('./Images/menu.png')} />
-        </TouchableOpacity>
-      </View>
-    </>
-  );
-}
-function Empty({navigation}) {
-  return (
-    <>
-      <EmptyDesignOne />
-      <View style={styles.menu}>
-        <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-          <Image style={styles.imgMenu} source={require('./Images/menu.png')} />
-        </TouchableOpacity>
-      </View>
-    </>
-  );
-}
+
 const Drawer = createDrawerNavigator();
 export default function App() {
   const dimensions = useWindowDimensions();
@@ -240,6 +173,7 @@ export default function App() {
                       color={color}
                     />
                   )}
+                  onPress={() => props.navigation.navigate('tabcarshop')}                  
                 />
                 <DrawerItem
                   label="Offers"
@@ -328,91 +262,9 @@ export default function App() {
         <Drawer.Screen name="SplashScreen" component={SplashScreen} />
         <Drawer.Screen name="LogIn" component={LogIn} />
         <Drawer.Screen name="SignUp" component={SignUp} />
+        <Drawer.Screen name="EmptyDesignOne" component={EmptyDesignOne} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
 }
-const styles = StyleSheet.create({
-  lblProduct: {
-    color: '#9caec0',
-    marginVertical: 2,
-  },
-  lblProductButton: {
-    color: '#9caec0',
-    marginVertical: 2,
-    marginHorizontal: 10,
-    fontSize: 10,
-  },
-  btnAdd: {
-    color: '#bacbda',
-    borderColor: '#bacbda',
-    borderWidth: 1,
-    marginTop: 8,
-    borderRadius: 5,
-  },
-  group3: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  card: {
-    width: '33%',
-    marginBottom: 50,
-    alignItems: 'center',
-  },
-  imgCard: {
-    width: '80%',
-    alignSelf: 'center',
-    height: 70,
-    marginBottom: 10,
-  },
-  content: {
-    width: '90%',
-    height: 550,
-    position: 'absolute',
-    alignSelf: 'center',
-    marginTop: 130,
-  },
-  menuContainer: {
-    backgroundColor: '#3cb3ab',
-    paddingLeft: 30,
-  },
-  image: {
-    width: 20,
-    height: 20,
-    marginTop: 8,
-  },
-  lblVegetabely: {
-    fontFamily: 'Courgette',
-    fontSize: 25,
-    color: 'white',
-    marginBottom: 20,
-  },
-  drawHeader: {
-    padding: 20,
-    alignItems: 'center',
-    backgroundColor: '#3cb3ab',
-  },
-  draw: {
-    backgroundColor: '#3cb3ab',
-    paddingLeft: 15,
-  },
-  menu: {
-    position: 'absolute',
-    marginTop: 35,
-    marginLeft: 20,
-  },
-  imgMenu: {
-    width: 30,
-    height: 30,
-  },
-  title: {
-    position: 'absolute',
-    marginTop: 40,
-    alignSelf: 'center',
-  },
-  labelTitle: {
-    fontFamily: 'Courgette',
-    fontSize: 25,
-    color: 'white',
-  },
-});
+

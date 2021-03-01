@@ -33,7 +33,7 @@ export default function LogIn(props) {
         .auth()
         .signInWithEmailAndPassword(formData.email, formData.password)
         .then(() => {
-          console.log('OK');
+          //console.log('home');
           navigation.navigate('home');
         })
         .catch(() => {
@@ -43,7 +43,7 @@ export default function LogIn(props) {
           });
         });
     }
-    setFormError(errors);
+    //setFormError(errors);
   };
   function defaultValue() {
     return {
